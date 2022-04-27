@@ -95,10 +95,22 @@
                 6px 6px 15px rgba(10, 10, 10, 0.3),
                 inset 5px 5px 18px rgba(10, 10, 10, 0.6);
         }
+
+        img {
+            width: 250px;
+            position: absolute;
+            top: 17%;
+            left: 32%;
+            z-index: 1;
+            /*
+            left: 33%;
+            z-index: 1; */
+        }
     </style>
 </head>
 
 <body>
+    <img src="cat.png" id="cat">
     <table border="1">
         <tr>
             <td colspan="4" id="result">0</td>
@@ -136,6 +148,7 @@
     <script>
         const result = document.getElementById('result')
         const tds = document.querySelectorAll('td:not(#result)')
+        const cat = document.getElementById('cat')
 
         for (const td of tds) {
             td.onclick = () => {
@@ -145,15 +158,21 @@
                 }
                 else if (text === 'C') {
                     result.innerText = '0'
+                    cat.style.left = '33%'
+                    cat.src = 'cat2.png'
                 }
                 else {
                     if (result.innerText === '0') {
                         result.innerText = text
+                        cat.style.left = '32%'
+                        cat.src = 'cat.png'
                     }
                     else {
                         if (result.innerText.length > 17) {
                             alert('超過18位數，請重新輸入')
                             result.innerText = '0'
+                            cat.style.left = '33%'
+                            cat.src = 'cat2.png'
                         }
                         else {
                             result.innerText += text
@@ -170,17 +189,23 @@
             }
             else if (event.key === 'C' || event.key === 'c') {
                 result.innerText = '0'
+                cat.style.left = '33%'
+                cat.src = 'cat2.png'
             }
             else if (!isNaN(parseInt(event.key)) || event.key === '+' || event.key === '-'
                 || event.key === '*' || event.key === '/' || event.key === '.') {
 
                 if (result.innerText === '0') {
                     result.innerText = event.key
+                    cat.style.left = '32%'
+                    cat.src = 'cat.png'
                 }
                 else {
                     if (result.innerText.length > 17) {
                         alert('超過18位數，請重新輸入')
                         result.innerText = '0'
+                        cat.style.left = '33%'
+                        cat.src = 'cat2.png'
                     }
                     else {
                         result.innerText += event.key
